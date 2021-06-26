@@ -10,16 +10,13 @@ async function startApolloServer() {
     const server = new ApolloServer({
         typeDefs,
         resolvers,
+        context: {
+            db
+        }
     });
     await server.start();
 
     server.applyMiddleware({ app });
-
-    app.use((req, res) => {
-        res.status(200);
-        res.send('Hello!');
-        res.end();
-    });
 
     try {
         await db.sequelize.authenticate();

@@ -6,7 +6,6 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
@@ -32,6 +31,12 @@ if (config.use_env_variable) {
 //     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
 //     db[model.name] = model;
 //   });
+
+const db = {
+  User: require('./user')(sequelize, Sequelize.DataTypes),
+  Book: require('./book')(sequelize, Sequelize.DataTypes),
+  Author: require('./author')(sequelize, Sequelize.DataTypes),
+}
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
