@@ -22,12 +22,23 @@ const typeDefs = gql`
         token: String!
     }
 
+    type BookUpdateResponse {
+        success: Boolean!,
+        message: String,
+    }
+
     type Query {
         books: [Book],
         book(id: ID!): Book,
         authors: [Author],
         author(id: ID!): Author, 
         me: User
+    }
+
+    type Mutation {
+        bookUpdate(bookId: ID!): BookUpdateResponse,
+        bookDelete(bookId: ID!): BookUpdateResponse,
+        login(email: String, password: String): User
     }
 `;
 
