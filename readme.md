@@ -1,5 +1,5 @@
-## Graph_Store
-#### api for online book store
+## Graph_api
+#### basic api that has CRUD functionality for user, books and author, along with association with books and author
 
 ### Technologies used
 - postgres
